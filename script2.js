@@ -10,7 +10,7 @@ try {
 
 
 
-  let students = data.split("\r\n");
+  let students = data.split("\r\n"); 
 
   let info = students.splice(0,1);
   info = info[0].split(",")

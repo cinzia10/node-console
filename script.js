@@ -38,22 +38,26 @@ try {
 
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //// STEP 1 - SPEZZARE LA STRINGA NELL'ARRAY 'LINES' DI LINEE;
-  //// LET LINES = [LINEA1, LINEA2, LINEA3, LINEA4]
+  //// STEP 1 - SPEZZARE LA STRINGA NELL'ARRAY 'LINES' DI LINEE:
+  //// LET LINES = [LINEA1, LINEA2, LINEA3, LINEA4];
 
-  let lines = data.split("\r\n", 4);
-
+  let lines = data.split("\r\n"); ///OPPURE .split(/\r?\n/);
+  lines = lines.filter(l => l !== '');
   //// STEP 2 - CREARE UNA VARIABILE CHIAMATA 'PROPERTIES' CHE CONTIENE LE PAROLE DA CUI E' COMPOSTA LA PRIMA LINEA;
-  //// CONST PROPERTIES = [TITLE, AUTHOR, PRICE, COPIES]
-  //// LET LINES = [LINEA2, LINEA3, LINEA4]
-  let properties = lines.splice(0,1);
-  properties = properties[0].split(',')
-  // console.log(lines);
-  // console.log(properties);
+  //// CONST PROPERTIES = [TITLE, AUTHOR, PRICE, COPIES];
+  //// LET LINES = [LINEA2, LINEA3, LINEA4];
+  
+  ///PRMO METODO
+  const properties = lines.shift().split(',');
+
+  ///SECONDO METODO
+  // let properties = lines.splice(0,1);
+  // properties = properties[0].split(',');
+
   
   //// STEP 3 - CREARE UN ARRAY VUOTO PER GLI OBJECT
   
-  const array = [];
+  const objectArray = [];
 
   //// STEP 4 - FARE UN CICLO SU TUTTE LE LINEE ALL'INTERNO DI 'LINES':
   //// - CREARE UN OBJECT VUOTO
@@ -65,20 +69,30 @@ try {
   
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    const object = {}
+    const object = {};
     const lineArray = line.split(',');
     for (let j = 0; j < properties.length; j++) {
-      const property = properties[j];
+      let property = properties[j];
+      // let value = lineArray[j];
+      // property = property.trim();
+      // value = value.trim()
       object[property] = lineArray[j];
     }
-    array.push(object)
+    objectArray.push(object);
   }
-  console.log(array)
   
-
-
-
   //// STEP 5 - FARE CONSOLE.LOG DELL'ARRAY
+  
+  console.log(objectArray);
 
 
-  // console.log(data)
+  const jsonArray = JSON.stringify(objectArray);
+
+  console.log(jsonArray);
+
+
+  try {
+    fs.writeFileSync("./output.json", jsonArray);
+    } catch {
+      console.error('file non trovato');
+    }

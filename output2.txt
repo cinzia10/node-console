@@ -7,3 +7,7 @@ Aenean velit augue, efficitur vitae ornare vel, ultrices in tortor. Maecenas ut 
 Numero caratteri (spazi compresi): 3851
 
 Numero caratteri (spazi esclusi): 3282
+
+Numero parole:562
+
+Occorrenze parola cercata:

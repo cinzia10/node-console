@@ -1,0 +1,9 @@
+viva il css!
+
+Numero caratteri (spazi compresi): 12
+
+Numero caratteri (spazi esclusi): 10
+
+Numero parole: 3
+
+Occorrenze parola cercata: 
